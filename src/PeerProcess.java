@@ -13,6 +13,7 @@ public class PeerProcess {
 
     public static void ReadPeer() {
         //Reads PeerInfo.cfg
+        //Create an array list of all the read lines
         //Start in read Peers based on previous reading and call peerProcess
     }
 
