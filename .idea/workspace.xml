@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b085bfe-24de-486d-933f-90f8ca5b2621" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Common.cfg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PeerInfo.cfg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PeerProcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PeerProcess.java" afterDir="false" />
     </list>
@@ -90,13 +88,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/PeerProcess.java</url>
-          <line>32</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/PeerProcess.java</url>
-          <line>68</line>
-          <option name="timeStamp" value="4" />
+          <line>184</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
