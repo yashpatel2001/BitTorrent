@@ -5,7 +5,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.*;
 import java.lang.Math;
+//import statements
 
+/**
+ * @author      Yash  Patel  ypatel1@ufl.edu
+ * @version     1.6          Version Midpoint
+ * @since       1.8          JDK version 1.8
+ *
+ * @author      Aadesh Thirukonda aadeshthirukonda@ufl.edu
+ *
+ * @author      Noah Meininger    noahmeininger@ufl.edu
+ */
 
 
 
@@ -13,6 +23,8 @@ public class PeerProcess {
 
 
     // variables for storing information from PeerInfo.cfg
+    //All of the respective lists on the bottom will hold global info
+    // on the connection settings for connecting to remote server
     public static ArrayList<Integer> peerIDs = new ArrayList<Integer>();
 
     public static ArrayList<String> hostNames = new ArrayList<String>();
@@ -21,6 +33,9 @@ public class PeerProcess {
 
     public static ArrayList<Boolean> hasFile = new ArrayList<Boolean>();
 
+
+
+    //Initialized variables for all the peers
     public static int NumberOfPreferredNeighbors = 0;
     public static int UnchokingInterval = 0;
     public static int OptimisticUnchokingInterval = 0;
@@ -29,8 +44,8 @@ public class PeerProcess {
     public static int PieceSize = 0;
     public static FileReader input = null;
 
-
-
+    // read all the peer info independet of the peerProcess
+    // part of the Peer class
     public static void ReadPeer() {
         //Reads PeerInfo.cfg
         //Create an array list of all the read lines
@@ -117,6 +132,9 @@ public class PeerProcess {
                     //set bitfield to all zeros
                 }
 
+                //Once this happens, ensure that we either write
+                // a log file,
+
 
             }
             else {
@@ -124,6 +142,12 @@ public class PeerProcess {
                 //Thus we're going to reference the peers that exists in the list before
                 //Iterating through that list of created peers
                 //Connecting a new peer to all the other peers that are connected to the server
+
+                //This list will help us keep track of how many peers came before this current peer
+                //in doing so, it help us make other TCP connections
+                for(int k=0; k<peer_list.size();k++) {
+                    //Within this we will connect peer i to peer k that range from whatever was preceding
+                }
 
             }
 
@@ -266,8 +290,22 @@ class Peer extends PeerProcess {
 
 class BitField extends Peer {
     ArrayList<Pieces> piece_for_bitfield= new ArrayList<Pieces>();
+
 }
 
 class Pieces extends BitField {
 
+    //Each piece should have filled value
+    // Each piece should have log message saying its been logged
+
+    boolean filled;
+    boolean isLogged;
+
+}
+
+
+class Logged extends Peer {
+    //This variable will represent where the path of the logged file is for each peer
+
+    String filepath;
 }
