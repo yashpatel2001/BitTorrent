@@ -6,6 +6,9 @@ import java.util.regex.Pattern;
 import java.util.*;
 import java.lang.Math;
 
+
+
+
 public class PeerProcess {
 
 
@@ -107,6 +110,13 @@ public class PeerProcess {
                 Peer newPeer = new Peer();
                 newPeer.peerProcess(peerIDs.get(i));
                 newPeer.peerhasFile=hasFile.get(i);
+                if(newPeer.peerhasFile==true) {
+                    //set bitfield to all 1s
+                }
+                else {
+                    //set bitfield to all zeros
+                }
+
 
             }
             else {
@@ -214,10 +224,32 @@ public class PeerProcess {
 class Peer extends PeerProcess {
 
     boolean peerhasFile;
+    public char[] bitfield=new char[16];
 
     public static void peerProcess(int peerId){
-        ReadCommon();
         //Making a connection server
+        try {
+            String path = System.getProperty("user.dir");
+            int total_list_size = peerIDs.size() / 3;
+            for (int i = 0; i < total_list_size; i++) {
+                RemotePeerInfo pInfo = new RemotePeerInfo(peerIDs.get(i).toString(), hostNames.get(i), ports_list.get(i).toString());
+
+                System.out.println("Start remote peer " + pInfo.peerId +  " at " + pInfo.peerAddress );
+
+                // *********************** IMPORTANT *************************** //
+                // If your program is JAVA, use this line.
+                Runtime.getRuntime().exec("ssh " + pInfo.peerAddress + " cd " + path + "; java peerProcess " + pInfo.peerId);
+
+                // If your program is C/C++, use this line instead of the above line.
+                //Runtime.getRuntime().exec("ssh " + pInfo.peerAddress + " cd " + path + "; ./peerProcess " + pInfo.peerId);
+            }
+            System.out.println("Starting all remote peers has done." );
+        }
+        catch (Exception ex) {
+            System.out.println(ex);
+        }
+        ReadCommon();
+
         //Setting up the bit field
 
     }
@@ -227,9 +259,15 @@ class Peer extends PeerProcess {
         //Making a instance of the peer process so that we see multiple instances
         p.ReadPeer();
 
-
     }
 
 
 }
 
+class BitField extends Peer {
+    ArrayList<Pieces> piece_for_bitfield= new ArrayList<Pieces>();
+}
+
+class Pieces extends BitField {
+
+}
