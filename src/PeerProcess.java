@@ -33,7 +33,7 @@ public class PeerProcess {
         //Create an array list of all the read lines
         //Start in read Peers based on previous reading and call peerProcess
         try {
-            input = new FileReader("src/PeerInfo.cfg");
+            input = new FileReader("PeerInfo.cfg");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -96,18 +96,44 @@ public class PeerProcess {
                 hasFile.add(hasfile);
 
         }
+        //Now we can objects that represent peers
+        // Within each peer we have 4 fields of data
+        //This peer is created through the peer class
+        // Each peer is created
+        ArrayList<Peer> peer_list=new ArrayList<Peer>();
+        for(int i=0;i<delimited_peerinfo.size();i++) {
+            //To explain the reasoning here,
+            if(peer_list.size()==0) {
+                Peer newPeer = new Peer();
+                newPeer.peerProcess(peerIDs.get(i));
+                newPeer.peerhasFile=hasFile.get(i);
+
+            }
+            else {
+                //Some peers had already existed
+                //Thus we're going to reference the peers that exists in the list before
+                //Iterating through that list of created peers
+                //Connecting a new peer to all the other peers that are connected to the server
+
+            }
+
+
+        }
+
+
 
     }
 
-    public static void peerProcess(int peerId) {
+    /*public static void peerProcess(int peerId) {
+        ReadCommon();
 
         //Function that starts peer process
 
-    }
+    }*/
 
     public static void ReadCommon()  {
         try {
-            input = new FileReader("src/Common.cfg");
+            input = new FileReader("Common.cfg");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -181,13 +207,29 @@ public class PeerProcess {
 
     }
 
+
+
+}
+
+class Peer extends PeerProcess {
+
+    boolean peerhasFile;
+
+    public static void peerProcess(int peerId){
+        ReadCommon();
+        //Making a connection server
+        //Setting up the bit field
+
+    }
+
     public static void main(String[] args) {
         PeerProcess p = new PeerProcess();
         //Making a instance of the peer process so that we see multiple instances
-        p.ReadCommon();
         p.ReadPeer();
 
 
     }
+
+
 }
 
